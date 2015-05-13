@@ -16,12 +16,16 @@ open(url) do |rss|
   feed.items.each_with_index do |item, index|
     if (index < FeedLimit)
       then
+      printf '['.cyan << "#{index}".white << '] '.cyan
       puts "#{item.title}".white
       puts "#{item.link}".yellow
-      if ((index < (feed.items.length - 1)) && (index < (FeedLimit - 1)))
-      then
-        puts
-      end
+      puts
     end
+  end
+
+  printf "Choose article: ".cyan
+  while (choice = $stdin.gets.to_i) do
+    `open -a #{ENV['BROWSER']} #{feed.items[choice].link}`
+    printf "Choose article: ".cyan
   end
 end
