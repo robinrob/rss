@@ -5,7 +5,12 @@ require 'open-uri'
 require 'colorize'
 
 Url = ARGV[0]
-FeedLimit = ARGV[1].to_i || 10
+
+unless ARGV[1].nil?
+  FeedLimit = ARGV[1].to_i
+else
+  FeedLimit = 10
+end
 
 class Object
   def numeric?
@@ -23,7 +28,7 @@ open(Url) do |rss|
       then
       printf '['.cyan << "#{index}".white << '] '.cyan
       puts "#{item.title}".white
-      puts "#{item.link}".yellow
+      puts "#{item.link}".yellown
       puts
     end
   end
