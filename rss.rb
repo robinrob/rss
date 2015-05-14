@@ -8,6 +8,12 @@ FeedLimit = 10
 
 url = ARGV[0]
 
+class Object
+  def numeric?
+    true if Float(self) rescue false
+  end
+end
+
 open(url) do |rss|
   feed = SimpleRSS.parse open(url)
   feed.channel.title.length.times { printf '-'.white }; puts
@@ -24,8 +30,14 @@ open(url) do |rss|
   end
 
   printf "Choose article: ".cyan
-  while (choice = $stdin.gets.to_i) do
-    `open -a #{ENV['BROWSER']} #{feed.items[choice].link}`
+  while (choice = $stdin.gets.chomp) do
+    if (choice.numeric?)
+      `open -a #{ENV['BROWSER']} #{feed.items[choice.to_i].link}`
+    elsif (choice.empty?)
+      break;
+    else
+      puts "Must choose a number within range of options.".red
+    end
     printf "Choose article: ".cyan
   end
 end
