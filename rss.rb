@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
-#
+
 require 'simple-rss'
 require 'open-uri'
 require 'colorize'
 
-url = ARGV[0]
-
 FeedLimit = 10
 
+url = ARGV[0]
+
 open(url) do |rss|
-  feed = SimpleRSS.parse open('http://slashdot.org/index.rdf')
+  feed = SimpleRSS.parse open(url)
   feed.channel.title.length.times { printf '-'.white }; puts
   printf "#{feed.channel.title}\n".cyan
   feed.channel.title.length.times { printf '-'.white }; puts; puts
