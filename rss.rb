@@ -4,9 +4,8 @@ require 'simple-rss'
 require 'open-uri'
 require 'colorize'
 
-FeedLimit = 10
-
-url = ARGV[0]
+Url = ARGV[0]
+FeedLimit = ARGV[1].to_i || 10
 
 class Object
   def numeric?
@@ -14,8 +13,8 @@ class Object
   end
 end
 
-open(url) do |rss|
-  feed = SimpleRSS.parse open(url)
+open(Url) do |rss|
+  feed = SimpleRSS.parse open(Url)
   feed.channel.title.length.times { printf '-'.white }; puts
   printf "#{feed.channel.title}\n".cyan
   feed.channel.title.length.times { printf '-'.white }; puts; puts
