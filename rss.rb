@@ -28,7 +28,7 @@ open(Url) do |rss|
       then
       printf '['.cyan << "#{index}".white << '] '.cyan
       puts "#{item.title}".white
-      puts "#{item.link}".yellown
+      puts "#{item.link}".yellow
       puts
     end
   end
