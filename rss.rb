@@ -23,7 +23,8 @@ open(Url) do |rss|
   feed.channel.title.length.times { printf '-'.white }; puts
   printf "#{feed.channel.title}\n".cyan
   feed.channel.title.length.times { printf '-'.white }; puts; puts
-  feed.items.each_with_index do |item, index|
+  feed.items.reverse.each_with_index do |item, index|
+    index = feed.items.length - 1 - index
     if (index < FeedLimit)
       then
       printf '['.cyan << "#{index}".white << '] '.cyan
