@@ -14,8 +14,8 @@ Articles are limited to top 10 by default.
 
 ### Examples
 
-Displays top 10 news items from Hacker News RSS feed:
+Display top 10 news items from Hacker News RSS feed:
 `./rss-opener.rb https://news.ycombinator.com/rss`
 
-Displays top 20 news items from Hacker News RSS feed:
+Display top 20 news items from Hacker News RSS feed:
 `./rss-opener.rb https://news.ycombinator.com/rss 20`
