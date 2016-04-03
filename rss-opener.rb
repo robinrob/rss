@@ -12,13 +12,18 @@ else
   FeedLimit = 10
 end
 
+class Object
+  def numeric?
+    true if Float(self) rescue false
+  end
+end
+
 open(Url) do |rss|
   feed = SimpleRSS.parse open(Url)
   feed.channel.title.length.times { printf '-'.white }; puts
   printf "#{feed.channel.title}\n".cyan
   feed.channel.title.length.times { printf '-'.white }; puts; puts
-  feed.items.reverse.each_with_index do |item, index|
-    index = feed.items.length - 1 - index
+  feed.items.each_with_index do |item, index|
     if (index < FeedLimit)
       then
       printf '['.cyan << "#{index}".white << '] '.cyan
